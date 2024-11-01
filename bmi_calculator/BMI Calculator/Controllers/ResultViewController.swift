@@ -14,11 +14,15 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var feedbackMessage: UILabel!
     
     var bmiValue : String?
+    var advice : String?
+    var color : UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         bmiResult.text = bmiValue
+        feedbackMessage.text = advice
+        view.backgroundColor = color
     }
     
     @IBAction func recalculateBmi(_ sender: UIButton) {
