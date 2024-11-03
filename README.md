@@ -29,7 +29,9 @@ This repository serves as a collection of iOS applications, written entirely in 
 Here is a list of the projects included in this repository, along with links to their detailed README files:
 
 1. [**BMI Calculator**](./bmi_calculator/README.md)
-   - Description: A simple two-screen app to calculate Body Mass Index (BMI) and provide health insights.
+   - *Description*: A simple two-screen app to calculate Body Mass Index (BMI) and provide health insights.
+1. [**Mausam**](./weather_app/README.md)
+   - *Description*: A feature-rich weather app that utilizes advanced iOS concepts, including Dark Mode, location services, and networking to provide real-time weather updates.
 
 
 ---
