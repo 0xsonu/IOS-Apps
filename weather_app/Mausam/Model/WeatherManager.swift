@@ -33,6 +33,7 @@ struct WeatherManager {
                 
                 if let safeData = data{
                     let dataString = String(data: safeData, encoding: .utf8)
+                    self.parseData(weatherData: safeData)
                     print(dataString!)
                 }
             })
@@ -41,6 +42,17 @@ struct WeatherManager {
         }
         
         
+    }
+    
+    func parseData(weatherData: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData)
+            print(decodedData.cod)
+            print(decodedData.main.feels_like)
+        } catch {
+            print("Found Error: \(error)")
+        }
     }
     
     // replaced by clouser
