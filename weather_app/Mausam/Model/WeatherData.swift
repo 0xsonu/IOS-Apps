@@ -19,9 +19,6 @@ struct WeatherData: Codable {
     let coord: Coord
     let main: Main
     let weather: [WeatherInfo]
-    let clouds: Clouds
-    let wind: Wind
-    let sys: Sys
 }
 
 struct Coord: Codable {

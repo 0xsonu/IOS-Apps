@@ -30,7 +30,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         // api call based on city
         print(searchTextField.text!)
         if let city = searchTextField.text {
-            weatherManager.fetchWeatherData(city: city)
+            weatherManager.fetchWeatherData(for: city)
         }
         
         searchTextField.text = ""
@@ -45,8 +45,16 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         }
     }
     
-    func didUpdateWeather(weather: Weather) {
-        print(weather)
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: Weather) {
+        DispatchQueue.main.async {
+            self.temperatureLabel.text = weather.temperatureString
+            self.cityLabel.text = weather.cityName
+            self.conditionImageView.image =  UIImage(systemName: weather.wetherConditionIcon)
+        }
+    }
+    
+    func didFailedWithError(_ error: any Error) {
+        print("Failed with Error: \(error)" )
     }
 
     
