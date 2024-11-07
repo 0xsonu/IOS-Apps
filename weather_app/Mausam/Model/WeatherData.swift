@@ -18,7 +18,7 @@ struct WeatherData: Codable {
     let timezone: Int
     let coord: Coord
     let main: Main
-    let weather: [Weather]
+    let weather: [WeatherInfo]
     let clouds: Clouds
     let wind: Wind
     let sys: Sys
@@ -40,7 +40,7 @@ struct Main: Codable {
     let grnd_level: Double
 }
 
-struct Weather: Codable {
+struct WeatherInfo: Codable {
     let id: Int
     let main: String
     let description: String
