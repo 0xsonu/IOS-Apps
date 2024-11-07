@@ -8,14 +8,21 @@
 
 import Foundation
 
+protocol WeatherManagerDelegate {
+    func didUpdateWeather(weather: Weather)
+}
+
 struct WeatherManager {
     let apiUrl: String = "https://api.openweathermap.org/data/2.5/weather?appid=32893633ae5f0c821d8ddc7e4e83a687&units=metric"
+    
+    var delegate: WeatherManagerDelegate?
     
     func fetchWeatherData(city: String){
         let url = "\(apiUrl)&q=\(city)"
         print("Initiating Request on \(url)")
         performRequest(urlString: url)
     }
+    
     
     
     // Network Call 4 step
@@ -35,8 +42,9 @@ struct WeatherManager {
                     let dataString = String(data: safeData, encoding: .utf8)
                     if let weather = self.parseData(weatherData: safeData) {
                         // send data to view
+                        // use delegate pattern
+                        delegate?.didUpdateWeather(weather: weather)
                     }
-                    print(dataString!)
                 }
             })
             // 4. start the task

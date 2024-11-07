@@ -1,19 +1,20 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
+class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     
-    let weathermanager = WeatherManager()
+    var weatherManager = WeatherManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         searchTextField.delegate = self
+        weatherManager.delegate = self
     }
 
     @IBAction func handleSearchClick(_ sender: UIButton) {
@@ -29,7 +30,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         // api call based on city
         print(searchTextField.text!)
         if let city = searchTextField.text {
-            weathermanager.fetchWeatherData(city: city)
+            weatherManager.fetchWeatherData(city: city)
         }
         
         searchTextField.text = ""
@@ -42,6 +43,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
             textField.placeholder = "Enter City Name"
             return false
         }
+    }
+    
+    func didUpdateWeather(weather: Weather) {
+        print(weather)
     }
 
     
